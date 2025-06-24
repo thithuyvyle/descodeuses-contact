@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>SUPPRESSION CONTACT</h2>
+<mat-dialog-content>
+    Êtes vous sûr(e) de vouloir supprimer le contact :
+    <br><br>
+    <strong>{{ data.contact.nom }}</strong> {{ data.contact.prenom }} ?
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Non</button>
+    <button mat-button mat-dialog-close (click)="confirmDelete()">Oui</button> 
+    <!-- (mat-dialog-close): on click ferme la fenêtre de dialog-->
+
+</mat-dialog-actions> 

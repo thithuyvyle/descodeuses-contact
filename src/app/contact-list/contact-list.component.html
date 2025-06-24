@@ -1,0 +1,54 @@
+<mat-card class="h-full flex flex-col">
+
+    <div class="flex gap-5 m-6">
+        <mat-form-field class="w-full flex flex-row" appearance="outline">
+            <mat-icon matPrefix>search</mat-icon>
+            <!-- event (change) executé seulement quand on perd focus -->
+            <!-- event (keyup) executé seulement si saisie clavier -->
+            <!-- event (input) executé seulement si saisie clavier (sauf ENTER) -->
+            <input class="border" matInput [(ngModel)]="textRecherche" (input)="onSearch()"
+                placeholder="Enter a name...">
+            <!-- comme formcontrolname [(ngModel)]: import FormsModule => liaison d'attributs et liaison évènement: bi directionnel
+        (input)= recherche en direct à chaque frappe de clavier -->
+        </mat-form-field>
+
+        <button type="button" [routerLink]="['/contact-details']" class="h-[56px] w-[56px] border rounded-md">
+            <mat-icon>person_add</mat-icon>
+        </button>
+    </div>
+
+
+    <div class="flex flex-col h-full">
+        <mat-list class="h-full">
+            @for(contact of listeContactFiltre; track contact.id){
+            <mat-list-item class="flex flex-nowrap flex-row justify-between">
+
+                <span [routerLink]="['/contact-details', contact.id]" class="flex-1 cursor-pointer">
+                    <strong>{{contact.nom}}</strong> , {{contact.prenom}}
+                </span>
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" class="align-middle">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item type="button" (click)="openDialog(contact)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Supprimer</span>
+                    </button>
+                    <button mat-menu-item type="button">
+                        <mat-icon>email</mat-icon>
+                        <a [href]="'mailto:'+contact.email+'?subject=Email exemple&body=Email example Contact'" class="no-underline text-stone-800">
+                            <span>Envoyer un email</span>
+                        </a>
+                    </button>
+                </mat-menu>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            }
+        </mat-list>
+
+        <div class="flex items-end">
+            <mat-list-item> Nombre de contacts: {{nombreContact}}</mat-list-item>
+        </div>
+    </div>
+</mat-card>
