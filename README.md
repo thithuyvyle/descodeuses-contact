@@ -1,3 +1,6 @@
-Contacts
+Gestion de contacts avec recherche dynamique et actions contextuelles sur liste
 
-Description courte de ce projet (par exemple : dashboard avec Angular Material et Tailwind).
+**Notions utilisées :**
+- Angular : formulaire, services CRUD, http, models, modules, routage
+- Angular Material : menu contextuel, liste
+- Tailwind CSS : flex
